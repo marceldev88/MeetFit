@@ -1,4 +1,4 @@
-package com.example.dupamirka;
+package pl.meetfit;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

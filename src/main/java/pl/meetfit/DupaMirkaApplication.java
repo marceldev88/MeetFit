@@ -1,4 +1,4 @@
-package com.example.dupamirka;
+package pl.meetfit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
