@@ -20,20 +20,28 @@ public class EventService {
                 .eventDo(event.getEventDo()).build();
         eventRepository.save(entity);
     }
-    public List<Event> getAllEvents(){
+
+    public List<Event> getAllEvents() {
         return eventRepository.findAll();
 
     }
-    public EventDto getById(Long id){
-       EventDto response= new EventDto();
 
-        Event event=eventRepository.getById(id);
+    public EventDto getById(Long id) {
+        EventDto response = new EventDto();
+
+        Event event = eventRepository.getById(id);
         response.setId(event.getId());
         response.setEventDo(event.getEventDo());
         response.setEventFrom(event.getEventFrom());
         response.setEventName(event.getEventName());
 
 
-       return response;
+        return response;
+    }
+
+    public void delete(Long id) {
+        EventDto eventdto = getById(id);
+        eventRepository.deleteById(id);
+
     }
 }
