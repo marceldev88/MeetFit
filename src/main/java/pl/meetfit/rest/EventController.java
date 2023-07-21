@@ -7,6 +7,7 @@ import pl.meetfit.rest.dto.EventOA;
 import pl.meetfit.service.EventService;
 import pl.meetfit.service.dto.EventDto;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class EventController {
 
     private final EventService eventService;
 
-    @GetMapping
+    @GetMapping({"/"})
     public List<EventDto> getAllEvents() {
 
         List<Event> allEvents = eventService.getAllEvents();
@@ -53,6 +54,16 @@ public class EventController {
      return eventService.getById(eventId);
 
     }
+    @GetMapping
+    public void getLiczba(@RequestParam String  eventId, @RequestParam String dupa){
+        System.out.println();
+    }
+
+    @GetMapping("/{eventName}/{eventFrom}")
+    public void getTime(@PathVariable String eventName, @PathVariable String eventFrom){
+        System.out.println();
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         eventService.delete(id);
