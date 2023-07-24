@@ -6,8 +6,10 @@ import pl.meetfit.reposytory.entity.Event;
 import pl.meetfit.rest.dto.EventOA;
 import pl.meetfit.service.EventService;
 import pl.meetfit.service.dto.EventDto;
+import pl.meetfit.service.dto.EventMapper;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ import java.util.List;
 public class EventController {
 
     private final EventService eventService;
-
+    private final EventMapper eventMapper;
     @GetMapping({"/"})
     public List<EventDto> getAllEvents() {
 
@@ -38,13 +40,17 @@ public class EventController {
 
     @PostMapping
     public void save(@RequestBody EventOA event) {
-        EventDto eventDto = EventDto.builder()
-                .eventName(event.getEventName())
-                .eventFrom(event.getEventFrom())
-                .eventDo(event.getEventDo())
-                .build();
+//        EventDto eventDto = EventDto.builder()
+//                .eventName(event.getEventName())
+//                .eventFrom(event.getEventFrom())
+//                .eventDo(event.getEventDo())
+//                .build();
+//
+//        eventService.save(eventDto);
+           EventDto eventDto= eventMapper.map(event);
+            eventService.save(eventDto);
 
-        eventService.save(eventDto);
+
     }
 
 
@@ -69,4 +75,9 @@ public class EventController {
         eventService.delete(id);
     }
 
+    @GetMapping("/search/{data}")
+    public List<EventDto>  getDataFrom(@PathVariable LocalDate data)
+    {
+        return  eventService.getEventsDateFrom(data);
+    }
 }
