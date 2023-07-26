@@ -81,6 +81,7 @@ public class EventController {
     }
 
 
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         eventService.delete(id);
