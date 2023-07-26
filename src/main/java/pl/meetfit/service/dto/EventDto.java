@@ -14,5 +14,6 @@ public class EventDto {
     private String eventName;
     private LocalDateTime eventFrom;
     private LocalDateTime eventDo;
+    private SportDto sport;
 
 }

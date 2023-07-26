@@ -20,5 +20,4 @@ public class Sport{
     private Long id;
 
     private String label;
-    private String value;
 }

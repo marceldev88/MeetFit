@@ -4,11 +4,15 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.meetfit.reposytory.entity.Event;
 import pl.meetfit.reposytory.entity.EventRepository;
+import pl.meetfit.reposytory.entity.Sport;
+import pl.meetfit.reposytory.entity.SportRepository;
+import pl.meetfit.rest.dto.EventSaveOA;
+import pl.meetfit.rest.dto.SportOA;
 import pl.meetfit.service.dto.EventDto;
 import pl.meetfit.service.dto.EventMapper;
+import pl.meetfit.service.dto.SportDto;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -16,10 +20,13 @@ import java.util.List;
 public class EventService {
     private final EventRepository eventRepository;
     private final EventMapper eventMapper;
-    public void save(EventDto event) {
+    private final SportRepository sportRepository;
+    public void save(EventSaveOA event) {
+        Sport sport= sportRepository.getById(event.getTypSport());
         Event entity = Event.builder()
                 .eventFrom(event.getEventFrom())
                 .eventName(event.getEventName())
+                .sport(sport)
                 .eventDo(event.getEventDo()).build();
         eventRepository.save(entity);
     }
@@ -37,6 +44,13 @@ public class EventService {
         response.setEventDo(event.getEventDo());
         response.setEventFrom(event.getEventFrom());
         response.setEventName(event.getEventName());
+        Sport sport = event.getSport();
+
+        SportDto sportDto = new SportDto();
+        sportDto.setLabel(sport.getLabel());
+        sportDto.setId(sport.getId());
+
+        response.setSport(sportDto);
 
 
         return response;
@@ -52,5 +66,11 @@ public class EventService {
        List <EventDto> eventDto2= eventMapper.map(events);
         return eventDto2;
 
+    }
+
+    public List<EventDto> getEventsForSport(Long sportId){
+        List<Event> events = eventRepository.findBySport_Id(sportId);
+        List<EventDto> eventDto= eventMapper.map(events);
+        return eventDto;
     }
 }

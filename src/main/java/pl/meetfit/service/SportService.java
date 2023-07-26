@@ -19,8 +19,7 @@ public class SportService {
 
     public void save(SportDto sport) {
         Sport entity = Sport.builder()
-                .label(sport.getLabel())
-                .value(sport.getValue()).build();
+                .label(sport.getLabel()).build();
         sportRepository.save(entity);
     }
 
@@ -32,7 +31,6 @@ public class SportService {
             SportDto sport1 = new SportDto();
             sport1.setId(allSports.get(i).getId());
             sport1.setLabel(allSports.get(i).getLabel());
-            sport1.setValue(allSports.get(i).getValue());
             response.add(sport1);
         }
         return response;
@@ -44,7 +42,6 @@ public class SportService {
         Sport sport= sportRepository.getById(id);
         response.setId(sport.getId());
         response.setLabel(sport.getLabel());
-        response.setValue(sport.getValue());
         return response;
     }
 

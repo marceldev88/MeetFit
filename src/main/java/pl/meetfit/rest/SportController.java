@@ -28,9 +28,9 @@ public class SportController {
  //       sport1.stream().map(x -> sports.put(x.getLabel(), x.getValue())).collect(Collectors.toList());
 
         //for(int x : sport1){
-        sport1.forEach((x)->
-            sports.put(x.getLabel(), x.getValue())
-        );
+//        sport1.forEach((x)->
+//            sports.put(x.getLabel(), x.getValue())
+//        );
 
 
 //        for (SportDto sportDto : sport1) {
@@ -46,7 +46,6 @@ public class SportController {
     public void save(@RequestBody SportOA sport) {
         SportDto sportDto = SportDto.builder()
                 .label(sport.getLabel())
-                .value(sport.getValue())
                 .build();
 
         sportService.save(sportDto);

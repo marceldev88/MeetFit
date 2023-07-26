@@ -8,5 +8,4 @@ import lombok.Setter;
 public class SportOA {
     private Long id;
     private String label;
-    private String value;
 }

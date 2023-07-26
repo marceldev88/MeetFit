@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
-      List<Event> findByEventFromBetween(LocalDateTime eventFrom, LocalDateTime evemtTo);
+      List<Event> findByEventFromBetween(LocalDateTime eventFrom, LocalDateTime eventTo);
+      List<Event> findBySport_Id(Long sportId);
 }

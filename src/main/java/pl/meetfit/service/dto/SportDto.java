@@ -9,5 +9,4 @@ import  lombok.*;
 public class SportDto {
     private Long id;
     private String label;
-    private String value;
 }

@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class EventOA {
+public class EventSaveOA {
     private Long id;
     private String eventName;
     private LocalDateTime eventFrom;
     private LocalDateTime eventDo;
-    private SportOA sport;
+    private Long typSport;
 
 }
